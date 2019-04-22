@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+    <body>
+        <div class="col">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <th>Text</th> <th>User Details</th> <th>Location</th> <th>Retweet Count</th> <th>Favourite Count</th>  <th>Date Created</th>
+                </thead>
+                <tbody>
+                    {% for tweet in tweets|sort(attribute='favorite_count', reverse = True)|sort(attribute='retweet_count', reverse = True)%}
+                    <tr>
+                        <td>{{tweet.text}}</td>
+                        <td><b>Name:</b> {{tweet.user.name}} <br> <b>Screen Name:</b> {{tweet.user.screen_name}}</td>
+                        <td>{{tweet.user.location}}</td>
+                        <td>{{tweet.retweet_count}}</td>
+                        <td>{{tweet.favorite_count}}</td>
+                        <td>{{tweet.created_at[:20]}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </body>
+</html>
